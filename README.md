@@ -58,12 +58,14 @@ DELETE /api/products/:id
 
 ## 🧪 Ejemplo de creación de producto (POST)
 
+
 ```json
 {
   "name": "Collar para gato",
   "price": 2500,
   "stock": 3
 }
+```
 ⚙️ Variables de entorno
 El proyecto utiliza un archivo .env con las siguientes variables:
 
