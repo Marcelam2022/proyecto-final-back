@@ -1,25 +1,21 @@
 import admin from "firebase-admin";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// ruta al json (local)
+const serviceAccountPath = path.join(__dirname, "../keys/firebase-admin.json");
+
+// leemos el json como OBJETO (ESM-friendly)
+const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf8"));
 
 if (!admin.apps.length) {
-  if (process.env.FIREBASE_SERVICE_ACCOUNT) {
-    // Vercel / Producción
-    const serviceAccount = JSON.parse(
-      process.env.FIREBASE_SERVICE_ACCOUNT
-    );
-
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-    });
-  } else {
-    // Local
-    const serviceAccount = await import("../keys/firebase-admin.json", {
-      assert: { type: "json" },
-    });
-
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount.default),
-    });
-  }
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
 }
 
 export const db = admin.firestore();
