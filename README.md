@@ -1,97 +1,129 @@
-# Proyecto Final Backend - API de Productos
+# API de Productos – Node.js + Express + Firebase
 
-API REST desarrollada con Node.js y Express, conectada a Firebase Firestore como base de datos.
-Incluye autenticación con JWT y protección de rutas sensibles.
+API REST desarrollada con Node.js y Express que permite gestionar productos utilizando Firebase Firestore como base de datos.
+Incluye validaciones, manejo de errores y protección de rutas mediante JWT.
 
----
+# Tecnologías utilizadas
 
-## 🚀 Tecnologías utilizadas
+Node.js
 
-- Node.js
-- Express
-- Firebase Admin SDK
-- Firestore
-- JSON Web Tokens (JWT)
-- dotenv
+Express
 
----
+Firebase Firestore (Admin SDK)
 
-## 📁 Estructura del proyecto
+JSON Web Tokens (JWT)
 
-src/
-├── controllers/
-├── services/
-├── models/
-├── routes/
-├── middleware/
-├── data/
-├── keys/
-├── index.js
+dotenv
 
----
+Vercel (deploy)
 
-## 🔐 Autenticación
+Instalación y ejecución local
 
-Las rutas de creación, actualización y eliminación de productos están protegidas con JWT.
+# Clonar el repositorio:
 
-El token debe enviarse en el header:
-
-Authorization: Bearer <token>
-
----
-
-## 📦 Endpoints disponibles
-
-### 🔹 Productos (públicos)
-
-GET /api/products  
-GET /api/products/:id  
-
-### 🔹 Productos (protegidos con JWT)
-
-POST /api/products  
-PUT /api/products/:id  
-PATCH /api/products/:id  
-DELETE /api/products/:id  
-
----
-
-## 🧪 Ejemplo de creación de producto (POST)
+git clone https://github.com/tu-usuario/tu-repo.git
 
 
-```json
-{
-  "name": "Collar para gato",
-  "price": 2500,
-  "stock": 3
-}
-```
-⚙️ Variables de entorno
-El proyecto utiliza un archivo .env con las siguientes variables:
-
-PORT=3000
-JWT_SECRET=supersecreto
-
-🔥 Firebase
-La conexión a Firestore se realiza utilizando Firebase Admin SDK.
-Las credenciales se manejan mediante un archivo de clave privada que no se sube al repositorio por razones de seguridad.
-
-▶️ Cómo ejecutar el proyecto
-Clonar el repositorio
-Instalar dependencias:
+# Instalar dependencias:
 
 npm install
-Ejecutar el servidor:
 
+
+# Crear archivo .env con las siguientes variables:
+
+PORT=3000
+JWT_SECRET=tu_clave_secreta
+
+
+# Ejecutar el servidor:
 
 npm start
+
+
 El servidor se ejecuta en:
+
 http://localhost:3000
 
+Endpoints disponibles
+Productos (públicos)
+Obtener todos los productos
+GET /api/products
 
----
-## importante!
-- El archivo `.env` y la clave de Firebase están ignorados mediante `.gitignore`
-- El proyecto está preparado para uso real y despliegue
+Obtener producto por ID
+GET /api/products/:id
 
----
+Productos (protegidos con JWT)
+
+Para estos endpoints es obligatorio enviar el token en el header:
+
+Authorization: Bearer <TOKEN>
+
+Crear producto
+POST /api/products
+
+
+Body (JSON):
+
+{
+  "name": "Producto ejemplo",
+  "price": 1000,
+  "stock": 10
+}
+
+Actualizar producto (PUT)
+PUT /api/products/:id
+
+
+Body (JSON):
+
+{
+  "name": "Producto actualizado",
+  "price": 1200,
+  "stock": 5
+}
+
+Actualizar parcialmente producto (PATCH)
+PATCH /api/products/:id
+
+
+Body (JSON):
+
+{
+  "price": 1500
+}
+
+Eliminar producto
+DELETE /api/products/:id
+
+Autenticación (JWT)
+
+Las rutas protegidas requieren un token JWT válido.
+El token debe enviarse en el header de la siguiente forma:
+
+Authorization: Bearer <TOKEN>
+
+
+Si el token es inválido o no se envía, la API responde con error 401 o 403.
+
+Manejo de errores
+
+400: errores de validación
+
+401: token faltante
+
+403: token inválido
+
+404: recurso no encontrado
+
+500: error interno del servidor
+
+Deploy
+
+La API se encuentra desplegada en Vercel:
+
+https://proyecto-final-back-ten.vercel.app/
+
+
+Ejemplo de endpoint en producción:
+
+GET https://proyecto-final-back-ten.vercel.app/api/products
