@@ -44,7 +44,7 @@ El servidor se ejecuta en:
 
 http://localhost:3000
 
-Endpoints disponibles
+# Endpoints disponibles
 Productos (públicos)
 Obtener todos los productos
 GET /api/products
@@ -54,7 +54,7 @@ GET /api/products/:id
 
 Productos (protegidos con JWT)
 
-Para estos endpoints es obligatorio enviar el token en el header:
+# Para estos endpoints es obligatorio enviar el token en el header:
 
 Authorization: Bearer <TOKEN>
 
@@ -105,7 +105,7 @@ Authorization: Bearer <TOKEN>
 
 Si el token es inválido o no se envía, la API responde con error 401 o 403.
 
-Manejo de errores
+# Manejo de errores
 
 400: errores de validación
 
@@ -117,7 +117,7 @@ Manejo de errores
 
 500: error interno del servidor
 
-Deploy
+# Deploy
 
 La API se encuentra desplegada en Vercel:
 
