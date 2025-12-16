@@ -39,8 +39,7 @@ export const validatePatchProduct = (body) => {
     return { ok: false, message: `Campo no permitido: ${invalidKey}` };
   }
 
-  // No normalizamos acá porque PATCH permite “a medias”
-  // (si querés, lo armamos más estricto)
+  
   return { ok: true, data: body };
 };
 
