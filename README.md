@@ -21,7 +21,7 @@ Instalación y ejecución local
 
 # Clonar el repositorio:
 
-git clone https://github.com/tu-usuario/tu-repo.git
+git clone https://github.com/Marcelam2022/proyecto-final-back.git
 
 
 # Instalar dependencias:
